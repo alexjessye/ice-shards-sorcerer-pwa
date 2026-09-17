@@ -1,0 +1,12 @@
+{
+  "name": "ice-shards-sorcerer-pwa",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Ice Shards Sorcerer leveling guide - Diablo IV PWA",
+  "scripts": {
+    "start": "serve -s . -l $PORT"
+  },
+  "dependencies": {
+    "serve": "^14.2.1"
+  }
+}

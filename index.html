@@ -1,0 +1,1310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Ice Shards Sorcerer - Guide</title>
+<meta name="description" content="Simple leveling guide for the Ice Shards Sorcerer - Diablo IV Season 15" />
+<meta name="theme-color" content="#0a0e1a" />
+<link rel="manifest" href="manifest.json" />
+<link rel="icon" href="icons/icon-192.png" />
+<link rel="apple-touch-icon" href="icons/icon-192.png" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="Ice Shards" />
+<style>
+  :root {
+    --bg: #0a0e1a;
+    --bg-elevated: #121826;
+    --bg-card: #161d2e;
+    --border: #263049;
+    --text: #e8edf7;
+    --text-dim: #93a1bd;
+    --accent: #4cc9f0;
+    --accent-dim: #2a5f73;
+    --pro: #5ee6a0;
+    --con: #f76a6a;
+    --tab-h: 60px;
+  }
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    overscroll-behavior-y: none;
+  }
+  body {
+    padding-bottom: calc(var(--tab-h) + env(safe-area-inset-bottom) + 10px);
+    min-height: 100vh;
+  }
+  header.top {
+    position: sticky; top: 0; z-index: 20;
+    background: linear-gradient(180deg, rgba(10,14,26,0.98), rgba(10,14,26,0.9));
+    backdrop-filter: blur(8px);
+    padding: calc(env(safe-area-inset-top) + 14px) 16px 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  header.top h1 {
+    margin: 0;
+    font-size: 1.05rem;
+    display: flex; align-items: center; gap: 8px;
+  }
+  header.top h1 .ico { font-size: 1.2rem; }
+  header.top .sub {
+    color: var(--text-dim);
+    font-size: 0.78rem;
+    margin-top: 3px;
+  }
+  main { padding: 12px 14px 20px; max-width: 640px; margin: 0 auto; }
+
+  .section { display: none; animation: fade .18s ease; }
+  .section.active { display: block; }
+  @keyframes fade { from { opacity: 0; transform: translateY(4px);} to {opacity:1; transform:none;} }
+
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 14px 16px;
+    margin-bottom: 12px;
+  }
+  .card h2 {
+    font-size: 1rem;
+    margin: 0 0 8px;
+    color: var(--accent);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .card h3 {
+    font-size: 0.88rem;
+    margin: 14px 0 6px;
+    color: var(--text);
+  }
+  .card p { font-size: 0.88rem; line-height: 1.5; color: var(--text-dim); margin: 0 0 8px; }
+  .card ul { margin: 4px 0 8px; padding-left: 18px; }
+  .card li { font-size: 0.86rem; line-height: 1.5; color: var(--text-dim); margin-bottom: 4px; }
+  .card li b, .card p b, .card li strong { color: var(--text); }
+
+  .pill-row { display: flex; gap: 8px; flex-wrap: wrap; margin: 6px 0; }
+  .pill {
+    font-size: 0.72rem; padding: 4px 10px; border-radius: 999px;
+    background: var(--bg-elevated); border: 1px solid var(--border); color: var(--text-dim);
+  }
+
+  .pros-cons { display: flex; gap: 10px; }
+  .pros-cons > div { flex: 1; }
+  .pros-cons h4 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: .04em; margin: 0 0 6px; }
+  .pros-cons .pros h4 { color: var(--pro); }
+  .pros-cons .cons h4 { color: var(--con); }
+  .pros-cons ul { padding-left: 16px; margin: 0; }
+  .pros-cons li { font-size: 0.82rem; }
+
+  table.simple { width: 100%; border-collapse: collapse; margin: 6px 0 10px; }
+  table.simple th, table.simple td {
+    text-align: left; font-size: 0.82rem; padding: 6px 8px;
+    border-bottom: 1px solid var(--border); color: var(--text-dim);
+  }
+  table.simple th { color: var(--text); }
+
+  .badge-good { color: var(--pro); font-weight: 600; }
+  .badge-bad { color: var(--con); font-weight: 600; }
+
+  nav.tabbar {
+    position: fixed; bottom: 0; left: 0; right: 0; z-index: 30;
+    display: flex;
+    background: rgba(18,24,38,0.97);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid var(--border);
+    padding-bottom: env(safe-area-inset-bottom);
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  nav.tabbar::-webkit-scrollbar { display: none; }
+  nav.tabbar button {
+    flex: 1 0 auto;
+    min-width: 68px;
+    background: none; border: none; color: var(--text-dim);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 2px;
+    padding: 8px 6px;
+    height: var(--tab-h);
+    font-size: 0.62rem;
+    font-family: inherit;
+  }
+  nav.tabbar button .icon { font-size: 1.15rem; line-height: 1; }
+  nav.tabbar button.active { color: var(--accent); }
+
+  .install-banner {
+    display: none;
+    position: fixed; left: 14px; right: 14px; bottom: calc(var(--tab-h) + env(safe-area-inset-bottom) + 12px);
+    background: var(--bg-card); border: 1px solid var(--accent-dim);
+    border-radius: 14px; padding: 12px 14px; z-index: 40;
+    align-items: center; gap: 10px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+  }
+  .install-banner.show { display: flex; }
+  .install-banner span { font-size: 0.82rem; flex: 1; color: var(--text); }
+  .install-banner button {
+    background: var(--accent); color: #05202b; border: none;
+    padding: 8px 12px; border-radius: 8px; font-weight: 700; font-size: 0.78rem;
+  }
+  .install-banner .dismiss {
+    background: none; color: var(--text-dim); padding: 6px; font-size: 1rem;
+  }
+
+  .top-actions { display: flex; gap: 8px; margin-top: 8px; }
+  .top-actions button {
+    background: var(--bg-elevated); border: 1px solid var(--border); color: var(--text-dim);
+    font-size: 0.72rem; padding: 5px 10px; border-radius: 8px;
+  }
+  .top-actions button.active-reset { color: var(--con); }
+
+  /* --- Skill tree (simple list style) --- */
+  .skill-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px 22px;
+    margin-top: 4px;
+  }
+  @media (min-width: 480px) {
+    .skill-grid { grid-template-columns: 1fr 1fr; }
+  }
+  .skill-card { }
+  .skill-card .sc-name {
+    font-weight: 700; font-size: 0.92rem; color: var(--text);
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 7px; margin-bottom: 10px;
+  }
+  .skill-card .sc-body {
+    display: flex; gap: 12px; align-items: flex-start;
+    background: none; border: none; padding: 0; text-align: left;
+    font-family: inherit; cursor: pointer; width: 100%;
+  }
+  .skill-card .sc-icon-wrap {
+    display: flex; flex-direction: column; align-items: center; gap: 3px;
+    flex-shrink: 0; width: 50px;
+  }
+  .skill-card .sc-icon {
+    width: 48px; height: 48px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center; font-size: 1.4rem;
+    background: linear-gradient(160deg, #16233a, #0d1420);
+    border: 2px solid #3a6ea8;
+  }
+  .skill-card .sc-rank {
+    font-weight: 800; font-size: 0.82rem; color: #fff;
+  }
+  .skill-card .sc-upgrades { flex: 1; padding-top: 2px; }
+  .upgrade-row { display: flex; align-items: center; gap: 8px; margin-bottom: 9px; }
+  .upgrade-row:last-child { margin-bottom: 0; }
+  .upgrade-icon {
+    width: 26px; height: 26px; border-radius: 50%; flex-shrink: 0;
+    border: 2px solid #7a4a2a;
+    background: linear-gradient(160deg, #2a1c0a, #170f06);
+    display: flex; align-items: center; justify-content: center; font-size: 0.6rem;
+  }
+  .upgrade-name { font-size: 0.8rem; color: var(--text); line-height: 1.3; }
+
+  /* --- Paragon boards --- */
+  .paragon-board { margin-bottom: 18px; }
+  .paragon-board:last-child { margin-bottom: 0; }
+  .paragon-board .pb-head {
+    display: flex; align-items: center; gap: 8px; margin-bottom: 6px;
+  }
+  .paragon-board .pb-num {
+    width: 22px; height: 22px; border-radius: 5px;
+    background: var(--accent-dim); color: var(--accent);
+    font-size: 0.78rem; font-weight: 800;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .paragon-board .pb-name { font-weight: 700; font-size: 0.9rem; color: var(--text); }
+  .paragon-board img {
+    width: 100%; border-radius: 10px; border: 1px solid var(--border); display: block;
+  }
+
+  /* --- Gear doll --- */
+  .gearset-tabs { display: flex; gap: 8px; margin-bottom: 12px; }
+  .gearset-tabs button {
+    flex: 1;
+    background: var(--bg-elevated); border: 1px solid var(--border); color: var(--text-dim);
+    font-size: 0.78rem; font-weight: 600; padding: 9px 6px; border-radius: 10px;
+    font-family: inherit;
+  }
+  .gearset-tabs button.active { background: var(--accent-dim); color: var(--accent); border-color: var(--accent-dim); }
+
+  .gear-doll {
+    display: grid;
+    grid-template-columns: minmax(0,1fr) 76px minmax(0,1fr);
+    align-items: center;
+    gap: 4px;
+    padding: 6px 0 4px;
+  }
+  .gear-col { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+  .gear-figure {
+    display: flex; align-items: center; justify-content: center;
+    height: 100%;
+    min-height: 260px;
+    position: relative;
+  }
+  .gear-figure .glow {
+    position: absolute; width: 130px; height: 130px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(76,201,240,0.25), rgba(76,201,240,0) 70%);
+  }
+  .gear-figure .char {
+    font-size: 3.6rem;
+    position: relative;
+    filter: drop-shadow(0 4px 14px rgba(76,201,240,0.35));
+  }
+
+  .gear-slot {
+    display: flex; align-items: center; gap: 6px;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 5px;
+    text-align: left;
+    font-family: inherit;
+    color: var(--text);
+    cursor: pointer;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    overflow: hidden;
+  }
+  .gear-col:nth-child(3) .gear-slot { flex-direction: row-reverse; text-align: right; }
+  .gear-slot .icon-box {
+    flex-shrink: 0;
+    width: 34px; height: 34px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem;
+    background: linear-gradient(160deg, #2a1c0a, #1a1408);
+    border: 1px solid #a9642a;
+    box-shadow: inset 0 0 0 1px rgba(255,159,67,0.25);
+  }
+  .gear-slot.rarity-unique .icon-box { border-color: #c98a2c; background: linear-gradient(160deg, #2e2510, #1a1408); }
+  .gear-slot .txt { min-width: 0; flex: 1 1 0%; overflow: hidden; }
+  .gear-slot .slot-label { font-size: 0.56rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: .02em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .gear-slot .item-name { font-size: 0.68rem; font-weight: 700; color: #ff9f43; line-height: 1.15; word-break: break-word; }
+
+  .gear-extra { margin-top: 16px; }
+  .gear-extra h3 { font-size: 0.78rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: .04em; margin: 0 0 8px; }
+  .icon-strip { display: flex; gap: 10px; margin-bottom: 16px; flex-wrap: wrap; }
+  .icon-strip .chip {
+    display: flex; flex-direction: column; align-items: center; gap: 4px;
+    width: 62px;
+    font-family: inherit; color: var(--text-dim); background: none; border: none;
+    cursor: pointer;
+  }
+  .icon-strip .chip .icon-box {
+    width: 48px; height: 48px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center; font-size: 1.4rem;
+    background: linear-gradient(160deg, var(--bg-elevated), var(--bg-card));
+    border: 1px solid var(--accent-dim);
+  }
+  .icon-strip .chip span.lbl { font-size: 0.65rem; text-align: center; }
+
+  .rune-pair-card {
+    display: flex; align-items: center; gap: 12px;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 10px 12px;
+    margin-bottom: 10px;
+    width: 100%;
+    text-align: left;
+    font-family: inherit;
+    color: var(--text);
+    cursor: pointer;
+  }
+  .rune-pair-card .icons { display: flex; gap: 6px; flex-shrink: 0; }
+  .rune-pair-card .icon-box {
+    width: 40px; height: 40px; border-radius: 9px;
+    display: flex; align-items: center; justify-content: center; font-size: 1.25rem;
+    background: linear-gradient(160deg, var(--bg-card), #0d1220);
+    border: 1px solid var(--accent-dim);
+  }
+  .rune-pair-card .info .name { font-size: 0.86rem; font-weight: 700; color: var(--accent); }
+  .rune-pair-card .info .desc { font-size: 0.78rem; color: var(--text-dim); margin-top: 2px; }
+  .rune-pair-card .chev { margin-left: auto; color: var(--text-dim); }
+
+  /* --- In-game style tooltip (used for Gear, Runes and Splinters) --- */
+  .tooltip-backdrop {
+    display: none;
+    position: fixed; inset: 0; z-index: 55;
+    background: rgba(0,0,0,0.65);
+    align-items: center; justify-content: center;
+    padding: 24px 18px;
+  }
+  .tooltip-backdrop.show { display: flex; }
+  .tooltip-card {
+    position: relative;
+    width: 100%;
+    max-width: 340px;
+    max-height: 86vh;
+    overflow-y: auto;
+    background:
+      radial-gradient(circle at 85% 8%, rgba(120,30,10,0.35), transparent 55%),
+      linear-gradient(160deg, #1b120a 0%, #100b06 100%);
+    border: 1px solid #6b431c;
+    box-shadow: 0 0 0 1px #2c1c0c, 0 24px 50px rgba(0,0,0,0.6);
+    border-radius: 4px;
+    padding: 20px 20px 18px;
+    animation: sheet-up .18s ease;
+  }
+  .tooltip-card .sigil {
+    position: absolute; top: 12px; right: 14px;
+    font-size: 1.7rem; opacity: 0.85;
+    filter: drop-shadow(0 0 6px rgba(255,120,40,0.35));
+  }
+  .tooltip-card .close-btn {
+    position: absolute; top: 10px; left: 12px;
+    background: none; border: none; color: var(--text-dim); font-size: 1.1rem; opacity: 0.7;
+  }
+  .tooltip-card .t-name {
+    color: #ff8c1a;
+    font-weight: 800;
+    font-size: 1.02rem;
+    letter-spacing: .01em;
+    text-transform: uppercase;
+    line-height: 1.3;
+    padding-right: 40px;
+    margin-top: 6px;
+  }
+  .tooltip-card .t-rarity {
+    color: #ff8c1a;
+    opacity: 0.85;
+    font-size: 0.78rem;
+    margin-top: 2px;
+  }
+  .tooltip-card .t-divider {
+    display: flex; align-items: center; gap: 8px;
+    margin: 12px 0;
+    color: #6b431c;
+  }
+  .tooltip-card .t-divider::before, .tooltip-card .t-divider::after {
+    content: ""; flex: 1; height: 1px; background: linear-gradient(90deg, transparent, #6b431c, transparent);
+  }
+  .tooltip-card .t-insert {
+    color: #9a9a9a;
+    font-size: 0.8rem;
+    margin-bottom: 10px;
+  }
+  .tooltip-card .t-basestat {
+    color: #f2f2f2;
+    font-weight: 700;
+    font-size: 0.92rem;
+    margin-bottom: 10px;
+  }
+  .tooltip-card .t-bullet {
+    display: flex; gap: 8px;
+    color: #cfcfcf;
+    font-size: 0.86rem;
+    line-height: 1.5;
+    margin-bottom: 8px;
+  }
+  .tooltip-card .t-bullet .diamond { color: #8a8a8a; flex-shrink: 0; margin-top: 2px; }
+  .tooltip-card .t-bullet b { color: #f2f2f2; }
+  .tooltip-card .t-bullet .num { color: #5eb6ff; font-weight: 600; }
+  .tooltip-card .t-bullets { margin-bottom: 8px; }
+  .tooltip-card .t-socket {
+    display: flex; gap: 10px; align-items: flex-start;
+    background: rgba(130,70,190,0.1);
+    border: 1px solid #5b3a7a;
+    border-radius: 6px;
+    padding: 10px;
+    margin: 4px 0 12px;
+  }
+  .tooltip-card .t-socket .socket-icon {
+    flex-shrink: 0;
+    width: 34px; height: 34px; border-radius: 50%;
+    background: radial-gradient(circle, #3a2050, #170c22);
+    border: 1px solid #8a5fc0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem;
+  }
+  .tooltip-card .t-socket .socket-title {
+    color: #c9a4e0; font-weight: 700; font-size: 0.84rem;
+  }
+  .tooltip-card .t-socket .socket-desc {
+    color: #cfa8e8; font-size: 0.8rem; margin-top: 2px; opacity: 0.9; line-height: 1.4;
+  }
+  .tooltip-card .t-quote {
+    color: #9a9a9a;
+    font-style: italic;
+    font-size: 0.82rem;
+    line-height: 1.5;
+    margin-top: 4px;
+  }
+  .tooltip-card .t-author {
+    color: #9a9a9a;
+    font-style: italic;
+    font-size: 0.82rem;
+    text-align: right;
+    margin-top: 2px;
+  }
+  .tooltip-card .t-footer {
+    display: flex; align-items: center; gap: 6px;
+    margin-top: 14px;
+    padding-top: 10px;
+    border-top: 1px solid #3a2410;
+    color: #8a8a8a;
+    font-size: 0.76rem;
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <h1><span class="ico">❄️</span> Ice Shards Sorcerer</h1>
+  <div class="sub">Leveling Guide — Diablo IV, Season 15 (Hell's Legacy)</div>
+</header>
+
+<main>
+
+  <!-- OVERVIEW -->
+  <section class="section active" data-section="overview">
+    <div class="card">
+      <h2>🧊 Overview</h2>
+      <p>The Ice Shards Sorcerer sends out piercing shards of ice in a line. Later on, a variant combines all the shards into one explosion for more area damage, while the piercing version keeps better single-target damage.</p>
+      <p><b>Spark</b> provides Crackling Energy for bonus damage early (plus area damage at level 15), but falls off later — it can be swapped for <b>Fire Bolt</b> (Vulnerable + Overpower) or <b>Arc Lash</b> (resource generation + mobility).</p>
+      <p><b>Teleport</b> lets you reposition or push forward fast (from level 15, castable every 5 seconds as an Evade via the Teleport Enchantment). <b>Ice Armor</b> gives an emergency barrier + Unstoppable. <b>Hydra</b> heals you and reduces cooldowns — keep one active to use Firewall more often.</p>
+      <div class="pros-cons">
+        <div class="pros">
+          <h4>Pros</h4>
+          <ul>
+            <li>Low Mana Cost</li>
+            <li>Range Optional</li>
+          </ul>
+        </div>
+        <div class="cons">
+          <h4>Cons</h4>
+          <ul>
+            <li>Low Area of Effect Early</li>
+            <li>Lower Scaling</li>
+          </ul>
+        </div>
+      </div>
+      <p style="margin-top:10px">This guide takes you up to level 70 and gets you started for the early Endgame on Torment 1 difficulty.</p>
+    </div>
+
+    <div class="card">
+      <h2>📌 Quick Summary</h2>
+      <ul>
+        <li>Blast anything that moves with <b>Ice Shards</b>.</li>
+        <li>Pick up and blast nearby enemies with Crackling Energy from <b>Spark</b>.</li>
+        <li>Keep <b>Hydra</b> active for extra damage while healing and reducing cooldowns.</li>
+        <li>Use <b>Firewall</b> when needed for additional damage against tougher enemies.</li>
+        <li>Reposition with <b>Teleport</b> and use <b>Ice Armor</b> to survive dangerous moments.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="section" data-section="skills">
+
+    <div class="gearset-tabs">
+      <button class="skills-tab active" data-view="points">Skill Points</button>
+      <button class="skills-tab" data-view="paragon">Paragon</button>
+    </div>
+
+    <div id="skills-view-points">
+      <div class="card">
+        <h2>🌲 Skill Points</h2>
+        <p>Every skill this build puts points into, with the rank invested and the upgrade choices taken. Tap a skill for the full breakdown.</p>
+        <div class="skill-grid" id="skill-grid"></div>
+      </div>
+
+      <div class="card">
+        <h2>🔷 Enchantments</h2>
+        <p>Unlocked via the Enchantment Slot class mechanic — these don't cost skill points.</p>
+        <div id="enchant-cards"></div>
+      </div>
+
+      <div class="card">
+        <h2>📝 Notes</h2>
+        <h3>Skills</h3>
+        <ul>
+          <li><b>Ice Shards</b> is your primary damage, combining all of the shards into one with <b>Ice Shards: Glacial Spike</b>.</li>
+          <li><b>Arc Lash</b> provides Ferocity, movement speed, and Mana.</li>
+          <li><b>Hydra</b> provides cooldown reduction and healing. Keep one active.</li>
+          <li><b>Teleport</b> provides Ferocity and movement speed. It can be reset with Overpower from <b>Inferno</b>.</li>
+          <li><b>Ice Armor</b> provides Barrier, Armor, and Unstoppable.</li>
+          <li><b>Inferno</b> provides Overpower that can be used to reset <b>Teleport</b>.</li>
+        </ul>
+        <h3>Skill Rotation</h3>
+        <ul>
+          <li>Cast <b>Inferno</b> when available to stack Overpower for <b>Teleport: Blaze</b>.</li>
+          <li>Use <b>Teleport</b> for more mobility — it also provides Ferocity when hitting enemies.</li>
+          <li>Cast <b>Ice Shards</b> at enemies, it deals more damage if enemies are grouped together.</li>
+          <li>Use <b>Arc Lash</b> as needed for Mana — it can maintain the movement speed buff every 5 seconds.</li>
+          <li>Maintain <b>Ice Armor</b> for Barrier and additional defense from <b>Ice Armor: Permafrost</b>.</li>
+          <li>Maintain one <b>Hydra</b> for additional cooldown reduction.</li>
+        </ul>
+        <h3>Enchantments</h3>
+        <ul>
+          <li><b>Frozen Orb</b> has a chance to trigger additional Orbs with any Skill Cast, providing additional damage.</li>
+          <li><b>Teleport</b> provides mobility for quality of life, replacing your evade with Teleport.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div id="skills-view-paragon" style="display:none">
+      <div class="card">
+        <h2>💠 Paragon Boards</h2>
+        <p>Board order and glyph placement, from Start to the final board.</p>
+        <div id="paragon-boards"></div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- GEMS / SPLINTERS -->
+  <section class="section" data-section="splinters">
+    <div class="card">
+      <h2>💎 Splinters (Seasonal Gems)</h2>
+      <p>Each Splinter has both a bonus and a fixed drawback effect. The greater the rarity, the stronger the bonus, while the drawback stays static. Tap one to see its full effect.</p>
+      <h3>✅ Great choices</h3>
+      <div id="splinters-good"></div>
+      <h3>❌ Do not use while leveling</h3>
+      <div id="splinters-bad"></div>
+    </div>
+  </section>
+
+  <!-- GEAR -->
+  <section class="section" data-section="gear">
+    <div class="card">
+      <h2>⚔️ Gear & Stat Priorities</h2>
+      <p>Focus the most on upgrading your <b>weapon</b> first, as its damage is the base for all further damage calculations. Until you have the right temper manuals, just grab any useful affix as long as its condition is active.</p>
+
+      <div class="gearset-tabs">
+        <button class="gearset-tab active" data-set="starter">T1 Starter</button>
+        <button class="gearset-tab" data-set="leveling">1-70 Leveling</button>
+      </div>
+
+      <div id="gear-view-starter">
+        <div class="gear-doll" id="gear-doll">
+          <div class="gear-col" id="gear-col-left"></div>
+          <div class="gear-figure">
+            <div class="glow"></div>
+            <div class="char">🧙‍♀️</div>
+          </div>
+          <div class="gear-col" id="gear-col-right"></div>
+        </div>
+        <p style="text-align:center; font-size:0.72rem; margin-top:2px;">Tap an item to see its full stat priority.</p>
+
+        <div class="gear-extra">
+          <h3>Recommended Runewords</h3>
+          <div class="icon-strip" id="rune-strip"></div>
+          <h3>Equipped Splinters</h3>
+          <div class="icon-strip" id="splinter-strip"></div>
+        </div>
+      </div>
+
+      <div id="gear-view-leveling" style="display:none">
+        <p>From 1 to 70, your gear keeps changing — follow a stat priority order per slot instead, no matter which Rare/Magic item you find.</p>
+        <h3>Defense (Helm, Chest, Pants, Boots)</h3>
+        <ul>
+          <li>Mana Regeneration → Intelligence → Maximum Life → Armor → Resistance to All Elements</li>
+          <li>Boots: add Movement Speed as the top priority</li>
+        </ul>
+        <h3>Offense (Gloves, Amulet, Rings, Weapon, Focus)</h3>
+        <ul>
+          <li>Vulnerable Damage % → All Damage % → Elemental Damage % (Cold/Lightning) → Critical Strike Chance → Critical Strike Damage Multiplier → Intelligence</li>
+        </ul>
+        <p style="margin-top:4px">Temper whatever you find until the right manuals are available — any useful affix works as long as its condition is active.</p>
+      </div>
+
+      <p style="margin-top:12px">You can also temper defensive options (Resistances, Life, Armor) to fill gaps in your survivability — tempering low level gear is cheap and can be very impactful.</p>
+    </div>
+  </section>
+
+  <!-- LEGENDARIES -->
+  <section class="section" data-section="items">
+    <div class="card">
+      <h2>🏺 Legendaries & Uniques</h2>
+      <p>The <b>Codex of Power</b> is a collection of Legendary Aspects you can imprint onto Rare or Legendary items at the Occultist, unlocked by salvaging items with these powers.</p>
+      <h3>Useful Aspects (drop/gamble)</h3>
+      <div class="pill-row">
+        <span class="pill">Shredding Blades</span>
+        <span class="pill">Recharging</span>
+        <span class="pill">Duelist's</span>
+        <span class="pill">Expectant</span>
+        <span class="pill">Elemental Acuity</span>
+        <span class="pill">Elemental Attunement</span>
+        <span class="pill">Orange Herald</span>
+      </div>
+      <h3>What to Gamble</h3>
+      <table class="simple">
+        <tr><th>Type</th><th>Slot</th></tr>
+        <tr><td>Offensive</td><td>Gloves</td></tr>
+        <tr><td>Defensive</td><td>Chest, Pants</td></tr>
+        <tr><td>Utility, Mobility</td><td>Boots</td></tr>
+        <tr><td>Resource</td><td>Rings</td></tr>
+      </table>
+      <h3>Great Uniques for this build</h3>
+      <ul>
+        <li>Hail of Verglas</li>
+        <li>Vision of the Firestorm — powers up Firewall</li>
+        <li>Esu's Heirloom</li>
+        <li>Tal Rasha's Iridescent Loop</li>
+        <li>Galvanic Azurite</li>
+      </ul>
+      <h3>Jackpot Drops to watch for</h3>
+      <p>Some lucky drops can massively speed up leveling by switching to another build, e.g. <b>Raiment of the Sea</b> (powers up Blizzard) or <b>Vision of the Firestorm</b> (powers up Firewall).</p>
+    </div>
+  </section>
+
+  <!-- RUNES -->
+  <section class="section" data-section="runes">
+    <div class="card">
+      <h2>🔮 Runes</h2>
+      <p>You can have up to two Runewords in your setup, each consisting of one Ritual and one Invocation Rune. Preferably socket them into your Armor — Weapon Gems offer powerful multiplicative damage bonuses that are best kept for damage.</p>
+
+      <h3>Best in Slot</h3>
+      <div id="rune-pairs-bis"></div>
+
+      <h3>Alternative Choices</h3>
+      <p>If you have access to higher level runes, you can also explore these — tap one to see what it does.</p>
+      <div class="icon-strip" id="rune-alts-strip"></div>
+    </div>
+  </section>
+
+  <!-- MERCS -->
+  <section class="section" data-section="mercs">
+    <div class="card">
+      <h2>🛡️ Mercenaries</h2>
+      <p>Unlocked during the Vessel of Hatred campaign. You can have one hired (permanent) mercenary and an occasional reinforcement.</p>
+      <h3>Hired: Raheir</h3>
+      <p><b>Valiance</b> prevents damage from large hits and makes you Unstoppable for a short duration — great for survival. Take Ground Slam + Raheir's Aegis, then Bastion with Iron Wolf's Virtue. Very powerful for Hardcore or harder content.</p>
+      <p><b>Alternative: Subo</b> — the passive Seeker reveals enemies/objects on your map and restores Mana. Take Wire Trap + Ready At Hand, then Cover Fire with Opening Fire.</p>
+      <h3>Reinforcement: Varyana</h3>
+      <p>Boosts your attack speed through <b>Bloodthirst</b>.</p>
+    </div>
+  </section>
+
+  <!-- LEVELING -->
+  <section class="section" data-section="leveling">
+    <div class="card">
+      <h2>📈 How to Level</h2>
+      <ul>
+        <li>If you haven't already, first complete the <b>Lord of Hatred</b> campaign.</li>
+        <li>Begin the Seasonal Questline to progress your Season Rank (perks, loot, etc.).</li>
+        <li>Stay on <b>Hard difficulty or above</b> to benefit from extra XP multipliers as long as your clear speed remains fast. Bump up difficulty after a big power jump.</li>
+        <li>From level 1-70, focus on <b>War Plans</b> activities to work on your activity trees.</li>
+        <li>Prioritize <b>Helltide</b>, <b>Pit</b>, and <b>Undercity</b>, as well as <b>Infernal Hordes</b> and <b>Nightmare Dungeons</b>.</li>
+        <li><b>Strongholds</b> provide a significant XP boost for little time investment — clear them all around level 60.</li>
+        <li>On an Alt, use Tempers and Imprints as soon as you acquire rare gear to crank up the difficulty faster.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ENDGAME -->
+  <section class="section" data-section="endgame">
+    <div class="card">
+      <h2>🏁 Endgame Transition</h2>
+      <p>As you approach level 70, you unlock higher item power gear — a good time to refresh your tempers and imprints.</p>
+      <p>After reaching 70, <b>Paragon Levels</b> unlock. Complete <b>Pit Tier 10</b> to enter <b>Torment 1</b>, where the Endgame begins.</p>
+      <p>With better gear, more levels, and Glyphs, you can push further and unlock higher difficulties.</p>
+    </div>
+
+    <div class="card">
+      <h2>💠 Paragon & Glyphs</h2>
+      <p><b>Important:</b> carefully check your Paragon Boards for correct rotation and order. Glyphs start at a radius of 3, up to 5 at level 50. Progress through the Pit to rank up your Glyphs.</p>
+      <h3>Glyph Priorities</h3>
+      <div class="pill-row">
+        <span class="pill">Destruction</span>
+        <span class="pill">Elementalist</span>
+        <span class="pill">Tactician</span>
+        <span class="pill">Unleash</span>
+        <span class="pill">Eliminator</span>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div class="tooltip-backdrop" id="tooltip-backdrop">
+  <div class="tooltip-card" id="tooltip-card">
+    <button class="close-btn" id="tooltip-close">✕</button>
+    <div class="sigil" id="tooltip-sigil"></div>
+    <div class="t-name" id="tooltip-name"></div>
+    <div class="t-rarity" id="tooltip-rarity"></div>
+    <div class="t-divider"><span>◆</span></div>
+    <div class="t-insert" id="tooltip-insert"></div>
+    <div class="t-basestat" id="tooltip-basestat"></div>
+    <div class="t-bullets" id="tooltip-bullets"></div>
+    <div class="t-socket" id="tooltip-socket">
+      <div class="socket-icon" id="tooltip-socket-icon"></div>
+      <div>
+        <div class="socket-title" id="tooltip-socket-title"></div>
+        <div class="socket-desc" id="tooltip-socket-desc"></div>
+      </div>
+    </div>
+    <div class="t-quote" id="tooltip-quote"></div>
+    <div class="t-author" id="tooltip-author"></div>
+    <div class="t-footer" id="tooltip-footer"></div>
+  </div>
+</div>
+
+<div class="install-banner" id="install-banner">
+  <span>Install this guide on your phone for quick access, even offline.</span>
+  <button id="install-btn">Install</button>
+  <button class="dismiss" id="install-dismiss">✕</button>
+</div>
+
+<nav class="tabbar" id="tabbar">
+  <button data-target="overview" class="active"><span class="icon">🧊</span>Overview</button>
+  <button data-target="skills"><span class="icon">🌲</span>Skills</button>
+  <button data-target="splinters"><span class="icon">💎</span>Splinters</button>
+  <button data-target="gear"><span class="icon">⚔️</span>Gear</button>
+  <button data-target="items"><span class="icon">🏺</span>Items</button>
+  <button data-target="runes"><span class="icon">🔮</span>Runes</button>
+  <button data-target="mercs"><span class="icon">🛡️</span>Mercenaries</button>
+  <button data-target="leveling"><span class="icon">📈</span>Leveling</button>
+  <button data-target="endgame"><span class="icon">🏁</span>Endgame</button>
+</nav>
+
+<script>
+  // --- Navigation ---
+  const tabs = document.querySelectorAll('#tabbar button');
+  const sections = document.querySelectorAll('.section');
+
+  function activate(target) {
+    sections.forEach(s => s.classList.toggle('active', s.dataset.section === target));
+    tabs.forEach(t => t.classList.toggle('active', t.dataset.target === target));
+    window.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' });
+    try { localStorage.setItem('is-guide-tab', target); } catch (e) {}
+  }
+
+  tabs.forEach(btn => {
+    btn.addEventListener('click', () => activate(btn.dataset.target));
+  });
+
+  try {
+    const saved = localStorage.getItem('is-guide-tab');
+    if (saved) activate(saved);
+  } catch (e) {}
+
+  // --- Visual Skill Tree ---
+  // Exact skills, ranks and upgrade picks as shown in the in-game planner (83 points spent)
+  const SKILLS_INVESTED = [
+    { name: "Frost Bolt", icon: "❄️", category: "Basic Skill", rank: "12/15", upgrades: [] },
+    { name: "Arc Lash", icon: "🔱", category: "Basic Skill", rank: "1/15", upgrades: ["Inescapable Reach", "Ferocity", "Resource Generation"] },
+    { name: "Frozen Orb", icon: "🔮", category: "Core Skill", rank: "27/15", upgrades: ["Shattered Path", "Barrier"] },
+    { name: "Ice Shards", icon: "🧊", category: "Core Skill", rank: "27/15", upgrades: ["Glacial Spike", "Barrier", "Pierce Damage Bonus"] },
+    { name: "Teleport", icon: "🌀", category: "Defensive Skill", rank: "1/15", upgrades: ["Blaze", "Movement Speed", "Ferocity"] },
+    { name: "Ice Armor", icon: "🧿", category: "Defensive Skill", rank: "27/15", upgrades: ["Permafrost", "Cooldown Reduction", "Duration Bonus and Barrier"] },
+    { name: "Frost Nova", icon: "💠", category: "Skill Node", rank: "12/15", upgrades: [] },
+    { name: "Hydra", icon: "🐍", category: "Companion Skill", rank: "27/15", upgrades: ["Frigid Hydra", "Cooldown Reduction", "Healing"] },
+    { name: "Ice Blades", icon: "🗡️", category: "Skill Node", rank: "12/15", upgrades: [] },
+    { name: "Blizzard", icon: "🌨️", category: "Skill Node", rank: "12/15", upgrades: [] },
+    { name: "Inferno", icon: "🔥", category: "Mastery Skill", rank: "1/15", upgrades: ["Lifecoil", "Overpower", "Cooldown Reduction"] },
+  ];
+
+  const ENCHANTMENTS = [
+    { name: "Teleport Enchantment", icon: "🔷", allocated: true, badge: "Lvl 15",
+      bullets: ["Replaces your Evade with a short-range Teleport.", "5 second cooldown — can't be reduced except via the Paragon node Enchantment Master."] },
+    { name: "Frozen Orb Enchantment", icon: "🔮", allocated: true, badge: "Lvl 30",
+      bullets: ["Chance to automatically send an Orb when you cast any Skill.", "Applies Vulnerable to enemies hit."] },
+    { name: "Ice Armor Enchantment", icon: "🛡️", allocated: false, badge: "Alternative",
+      bullets: ["Defensive alternative to Frozen Orb Enchantment."] },
+  ];
+
+  function skillToTooltip(skill) {
+    const bullets = skill.upgrades.length
+      ? skill.upgrades.map(u => `Upgrade choice: ${u}`)
+      : ["No further upgrade choices taken for this node."];
+    return {
+      icon: skill.icon,
+      name: skill.name,
+      rarity: skill.category,
+      bullets,
+      footerIcon: "✅",
+      footerLabel: "Rank",
+      footerValue: skill.rank,
+    };
+  }
+
+  const skillGridEl = document.getElementById('skill-grid');
+  if (skillGridEl) {
+    SKILLS_INVESTED.forEach(skill => {
+      const card = document.createElement('div');
+      card.className = 'skill-card';
+      card.innerHTML = `
+        <div class="sc-name">${skill.name}</div>
+        <button class="sc-body">
+          <div class="sc-icon-wrap">
+            <div class="sc-icon">${skill.icon}</div>
+            <div class="sc-rank">${skill.rank}</div>
+          </div>
+          <div class="sc-upgrades">
+            ${skill.upgrades.map(u => `<div class="upgrade-row"><div class="upgrade-icon">${skill.icon}</div><div class="upgrade-name">${u}</div></div>`).join('')}
+          </div>
+        </button>`;
+      card.querySelector('.sc-body').addEventListener('click', () => openTooltip(skillToTooltip(skill)));
+      skillGridEl.appendChild(card);
+    });
+  }
+
+  const enchantCardsEl = document.getElementById('enchant-cards');
+  if (enchantCardsEl) {
+    ENCHANTMENTS.forEach(n => {
+      const btn = document.createElement('button');
+      btn.className = 'rune-pair-card';
+      btn.innerHTML = `
+        <div class="icons"><div class="icon-box">${n.icon}</div></div>
+        <div class="info">
+          <div class="name">${n.name}</div>
+          <div class="desc">${n.allocated ? n.bullets[0] : n.badge}</div>
+        </div>
+        <span class="chev">›</span>`;
+      btn.addEventListener('click', () => openTooltip({
+        icon: n.icon, name: n.name, rarity: "Enchantment", bullets: n.bullets,
+        footerIcon: n.allocated ? "✅" : "🔓",
+        footerLabel: n.allocated ? "Unlocked" : "Status",
+        footerValue: n.badge,
+      }));
+      enchantCardsEl.appendChild(btn);
+    });
+  }
+
+  // --- Skills sub-tabs (Skill Points vs Paragon) ---
+  const skillsTabs = document.querySelectorAll('.skills-tab');
+  const skillsViewPoints = document.getElementById('skills-view-points');
+  const skillsViewParagon = document.getElementById('skills-view-paragon');
+  skillsTabs.forEach(btn => {
+    btn.addEventListener('click', () => {
+      skillsTabs.forEach(b => b.classList.toggle('active', b === btn));
+      const isPoints = btn.dataset.view === 'points';
+      skillsViewPoints.style.display = isPoints ? '' : 'none';
+      skillsViewParagon.style.display = isPoints ? 'none' : '';
+    });
+  });
+
+  // --- Paragon boards ---
+  const PARAGON_BOARDS = [
+    { num: 1, name: "Start / Eliminator", file: "paragon/1-start-eliminator.png" },
+    { num: 2, name: "Enchantment Master", file: "paragon/2-enchantment-master.png" },
+    { num: 3, name: "Icefall", file: "paragon/3-icefall.png" },
+    { num: 4, name: "Frigid Fate", file: "paragon/4-frigid-fate.png" },
+    { num: 5, name: "Searing Heat", file: "paragon/5-searing-heat.png" },
+  ];
+
+  const paragonBoardsEl = document.getElementById('paragon-boards');
+  if (paragonBoardsEl) {
+    PARAGON_BOARDS.forEach(b => {
+      const div = document.createElement('div');
+      div.className = 'paragon-board';
+      div.innerHTML = `
+        <div class="pb-head">
+          <div class="pb-num">${b.num}</div>
+          <div class="pb-name">${b.name}</div>
+        </div>
+        <img src="${b.file}" alt="${b.name} Paragon board" loading="lazy" />`;
+      paragonBoardsEl.appendChild(div);
+    });
+  }
+
+  // --- Gear doll (T1 Starter set) ---
+  const GEAR_LEFT = [
+    { id: "helm", slot: "Helm", name: "Juggernaut's", icon: "🪖", rarity: "legendary",
+      stats: ["Intelligence", "Maximum Life", "Cooldown Reduction", "Resistance to All Elements", "Armor", "Mana Regeneration", "Resource Cost Reduction"],
+      temper: "Maximum Life", socketRune: "cem-qua" },
+    { id: "chest", slot: "Chest Armor", name: "Might", icon: "🧥", rarity: "legendary",
+      stats: ["Intelligence", "Maximum Life", "Armor", "Mana Regeneration", "Resistance to All Elements", "Resource Cost Reduction"],
+      temper: "Maximum Life", socketRune: "cir-ceh" },
+    { id: "gloves", slot: "Gloves", name: "Sunderfrost", icon: "🧤", rarity: "legendary",
+      stats: ["Maximum Life", "Critical Strike Chance", "x50% Critical Strike Damage Multiplier", "x28% Vulnerable Damage Multiplier", "x24% Cold Damage Multiplier", "x20% All Damage Multiplier", "Intelligence", "Attack Speed", "Cooldown Reduction"],
+      temper: "Vulnerable Damage" },
+    { id: "pants", slot: "Pants", name: "Concentration", icon: "👖", rarity: "legendary",
+      stats: ["Intelligence", "Maximum Life", "Armor", "Mana Regeneration", "Resistance to All Elements"],
+      temper: "Maximum Life" },
+    { id: "boots", slot: "Boots", name: "Biting Cold", icon: "🥾", rarity: "legendary",
+      stats: ["Intelligence", "Maximum Life", "Movement Speed", "Mana Regeneration", "Armor", "Resistance to All Elements"],
+      temper: "Movement Speed" },
+    { id: "mainhand", slot: "Mainhand", name: "Conceited", icon: "🪄", rarity: "unique",
+      stats: ["x25% Critical Strike Damage Multiplier (priority)", "Maximum Life", "x10% All Damage Multiplier", "x10% Cold Damage Multiplier", "Intelligence", "Weapon Damage"],
+      temper: "Attack Speed" },
+  ];
+
+  const GEAR_RIGHT = [
+    { id: "amulet", slot: "Amulet", name: "Merciless Cold", icon: "📿", rarity: "legendary",
+      stats: ["Maximum Life", "Critical Strike Chance", "x50% Critical Strike Damage Multiplier", "x28% Vulnerable Damage Multiplier", "x24% Lightning Damage Multiplier", "x20% All Damage Multiplier", "Intelligence", "Ranks to Shock Skills", "Ranks to All Skills", "Attack Speed"],
+      temper: "Movement Speed", socketSplinter: "mother" },
+    { id: "ring1", slot: "Left Ring", name: "Elemental Acuity", icon: "💍", rarity: "legendary",
+      stats: ["Maximum Life", "Critical Strike Chance", "x25% Critical Strike Damage Multiplier", "x14% Vulnerable Damage Multiplier", "x10% All Damage Multiplier", "x10% Cold Damage Multiplier", "Intelligence", "Attack Speed"],
+      temper: "Cooldown Reduction", socketSplinter: "anguish" },
+    { id: "ring2", slot: "Right Ring", name: "Elemental Attunement", icon: "💍", rarity: "legendary",
+      stats: ["Maximum Life", "Critical Strike Chance", "x25% Critical Strike Damage Multiplier", "x14% Vulnerable Damage Multiplier", "x10% All Damage Multiplier", "x10% Cold Damage Multiplier", "Intelligence", "Attack Speed"],
+      temper: "Cooldown Reduction", socketSplinter: "soulstone" },
+    { id: "offhand", slot: "Offhand", name: "Duelist's", icon: "🔮", rarity: "unique",
+      stats: ["Maximum Life", "Critical Strike Chance", "x25% Critical Strike Damage Multiplier", "Intelligence", "x10% All Damage Multiplier", "x10% Cold Damage Multiplier"],
+      temper: "Critical Strike Chance" },
+  ];
+
+  function capitalize(w) { return w.charAt(0).toUpperCase() + w.slice(1); }
+
+  function gearToTooltip(item) {
+    const data = {
+      icon: item.icon,
+      name: item.name,
+      rarity: `${capitalize(item.rarity)} ${item.slot}`,
+      bullets: item.stats,
+      footerIcon: "🔧",
+      footerLabel: "Recommended Tempering",
+      footerValue: item.temper,
+    };
+    if (item.socketRune) {
+      const pair = RUNE_PAIRS.find(p => p.id === item.socketRune);
+      if (pair) {
+        data.socket = {
+          icon: pair.ritual.icon,
+          title: `Socketed Runeword: ${pair.name}`,
+          desc: pair.short,
+          action: () => openTooltip(runeToTooltip(pair.ritual, pair)),
+        };
+      }
+    } else if (item.socketSplinter) {
+      const s = SPLINTERS_FULL.find(x => x.id === item.socketSplinter);
+      if (s) {
+        data.socket = {
+          icon: s.icon,
+          title: `Socketed: ${s.name}`,
+          desc: s.bonus,
+          action: () => openTooltip(splinterToTooltip(s)),
+        };
+      }
+    }
+    return data;
+  }
+
+  const SPLINTERS_FULL = [
+    { id: "hellfire", name: "Splinter of Hellfire", icon: "🔥", good: true,
+      bonus: "Guaranteed increase to damage dealt.",
+      rarity: "Legendary Soul Splinter",
+      baseStat: "+250 Resistance to All Elements",
+      bullets: ['Jewelry: Your damage is increased by <span class="num">30%[x]</span>, but you can no longer deal Critical Strikes.'] },
+    { id: "soulstone", name: "Splinter of the Black Soulstone", icon: "🖤", good: true,
+      bonus: "Your damage scales up while you kill mobs of monsters in a pack.",
+      rarity: "Legendary Soul Splinter",
+      baseStat: "+20 All Stats",
+      bullets: ['Jewelry: Your kills absorb a soul for 10 seconds. Each soul increases your damage by <span class="num">1.5%[x]</span> but increases your damage taken by <span class="num">1%</span>. This effect stacks up to 200 times, but does not refresh.'],
+      quote: "Abandon your quest, Nephalem. Your allies seek only to control you. With the power I offer, you and I could rule over all creation.",
+      author: "Zoltun Kulle" },
+    { id: "damnation", name: "Splinter of Damnation", icon: "💀", good: true,
+      bonus: "Increases Monster Power and the experience gained from defeating Elites.",
+      rarity: "Legendary Soul Splinter",
+      baseStat: "+1,750 Resistance to Shadow",
+      bullets: ['Jewelry: Killing an Elite pack grants <span class="num">+1</span> Monster Power and <span class="num">+25%[x]</span> bonus Experience for 15 seconds.'] },
+    { id: "mother", name: "Splinter of the Mother", icon: "🩸", good: true,
+      bonus: "Makes you Unhindered and applies Vulnerable to enemies as you touch them.",
+      rarity: "Legendary Soul Splinter",
+      baseStat: "+1,750 Resistance to Physical",
+      bullets: ['Jewelry: You are Unhindered. Enemies you touch become Vulnerable. After touching <span class="num">150</span> enemies, you are Stunned for <span class="num">4</span> seconds.'] },
+    { id: "anguish", name: "Splinter of Anguish", icon: "⚔️", good: true,
+      bonus: "+10% Critical Strike Chance and Attack Speed.",
+      rarity: "Legendary Soul Splinter",
+      baseStat: "+1,750 Resistance to Fire",
+      bullets: ['Jewelry: Gain <span class="num">+10%[x]</span> Attack Speed and Critical Strike Chance, but your Primary Resource Costs are increased by <span class="num">30%</span>.'] },
+    { id: "pain", name: "Splinter of Pain", icon: "🛑", good: false,
+      bonus: "Additional damage reduction.",
+      rarity: "Legendary Soul Splinter",
+      baseStat: "+1,750 Resistance to Poison",
+      bullets: ['Jewelry: Gain <span class="num">+15%[x]</span> Damage Reduction, but your Movement Speed is reduced by <span class="num">30%</span> — slows down leveling.'] },
+  ];
+
+  function splinterToTooltip(s) {
+    return {
+      icon: s.icon,
+      name: s.name,
+      rarity: s.rarity,
+      insertLine: "Can be inserted into equipment with sockets.",
+      baseStat: s.baseStat,
+      bullets: s.bullets,
+      quote: s.quote,
+      author: s.author,
+      footerIcon: "🔗",
+      footerLabel: null,
+      footerValue: "Amalgamable",
+    };
+  }
+
+  function splinterCard(s) {
+    const btn = document.createElement('button');
+    btn.className = 'rune-pair-card';
+    btn.innerHTML = `
+      <div class="icons"><div class="icon-box">${s.icon}</div></div>
+      <div class="info">
+        <div class="name">${s.name}</div>
+        <div class="desc">${s.bonus}</div>
+      </div>
+      <span class="chev">›</span>`;
+    btn.addEventListener('click', () => openTooltip(splinterToTooltip(s)));
+    return btn;
+  }
+
+  const splintersGood = document.getElementById('splinters-good');
+  const splintersBad = document.getElementById('splinters-bad');
+  if (splintersGood) SPLINTERS_FULL.filter(s => s.good).forEach(s => splintersGood.appendChild(splinterCard(s)));
+  if (splintersBad) SPLINTERS_FULL.filter(s => !s.good).forEach(s => splintersBad.appendChild(splinterCard(s)));
+
+  const SPLINTERS_EQUIPPED = ["mother", "anguish", "soulstone"];
+
+  // --- Unified in-game style tooltip modal (Gear, Runes, Splinters) ---
+  const tooltipBackdrop = document.getElementById('tooltip-backdrop');
+  const tooltipSigil = document.getElementById('tooltip-sigil');
+  const tooltipName = document.getElementById('tooltip-name');
+  const tooltipRarity = document.getElementById('tooltip-rarity');
+  const tooltipInsert = document.getElementById('tooltip-insert');
+  const tooltipBasestat = document.getElementById('tooltip-basestat');
+  const tooltipBullets = document.getElementById('tooltip-bullets');
+  const tooltipSocket = document.getElementById('tooltip-socket');
+  const tooltipSocketIcon = document.getElementById('tooltip-socket-icon');
+  const tooltipSocketTitle = document.getElementById('tooltip-socket-title');
+  const tooltipSocketDesc = document.getElementById('tooltip-socket-desc');
+  const tooltipQuote = document.getElementById('tooltip-quote');
+  const tooltipAuthor = document.getElementById('tooltip-author');
+  const tooltipFooter = document.getElementById('tooltip-footer');
+  const tooltipClose = document.getElementById('tooltip-close');
+
+  function highlightNums(text) {
+    return text.replace(/(x?\+?\d+(\.\d+)?%(\[x\])?|(?<![\w%])\+?\d+(?![\w%]))/g, '<span class="num">$1</span>');
+  }
+
+  function openTooltip(data) {
+    tooltipSigil.textContent = data.icon;
+    tooltipName.textContent = data.name;
+    tooltipRarity.textContent = data.rarity || '';
+    tooltipRarity.style.display = data.rarity ? '' : 'none';
+
+    if (data.insertLine) {
+      tooltipInsert.textContent = data.insertLine;
+      tooltipInsert.style.display = '';
+    } else {
+      tooltipInsert.style.display = 'none';
+    }
+
+    if (data.baseStat) {
+      tooltipBasestat.textContent = data.baseStat;
+      tooltipBasestat.style.display = '';
+    } else {
+      tooltipBasestat.style.display = 'none';
+    }
+
+    tooltipBullets.innerHTML = (data.bullets || []).map(b => {
+      const html = b.includes('<span') ? b : highlightNums(b);
+      return `<div class="t-bullet"><span class="diamond">◈</span><span>${html}</span></div>`;
+    }).join('');
+
+    if (data.socket) {
+      tooltipSocketIcon.textContent = data.socket.icon;
+      tooltipSocketTitle.textContent = data.socket.title;
+      tooltipSocketDesc.textContent = data.socket.desc;
+      tooltipSocket.style.display = '';
+      tooltipSocket.style.cursor = data.socket.action ? 'pointer' : '';
+      tooltipSocket.onclick = data.socket.action ? (e) => { e.stopPropagation(); data.socket.action(); } : null;
+    } else {
+      tooltipSocket.style.display = 'none';
+      tooltipSocket.onclick = null;
+    }
+
+    if (data.quote) {
+      tooltipQuote.textContent = `"${data.quote}"`;
+      tooltipAuthor.textContent = `-${data.author}`;
+      tooltipQuote.style.display = '';
+      tooltipAuthor.style.display = '';
+    } else {
+      tooltipQuote.style.display = 'none';
+      tooltipAuthor.style.display = 'none';
+    }
+
+    if (data.footerValue) {
+      const label = data.footerLabel ? `${data.footerLabel}: ` : '';
+      tooltipFooter.innerHTML = `${data.footerIcon || '🔗'} <span>${label}<b>${data.footerValue}</b></span>`;
+      tooltipFooter.style.display = '';
+    } else {
+      tooltipFooter.style.display = 'none';
+    }
+
+    tooltipBackdrop.classList.add('show');
+  }
+
+  function closeTooltip() {
+    tooltipBackdrop.classList.remove('show');
+  }
+
+  tooltipClose?.addEventListener('click', closeTooltip);
+  tooltipBackdrop?.addEventListener('click', (e) => {
+    if (e.target === tooltipBackdrop) closeTooltip();
+  });
+
+  // --- Runewords ---
+  const RUNE_PAIRS = [
+    { id: "cem-qua", icon1: "🌀", icon2: "💠", name: "Cem + Qua", short: "Movement speed buff on every Evade",
+      ritual: { name: "Cem", type: "Ritual Rune", icon: "🌀",
+        bullets: ["Triggers on Evade", "Grants a burst of Movement Speed each time you Evade"] },
+      invocation: { name: "Qua", type: "Invocation Rune", icon: "💠",
+        bullets: ["Empowers the Cem Ritual effect", "Scales the Movement Speed bonus from Cem"] } },
+    { id: "cir-ceh", icon1: "🐺", icon2: "🛡️", name: "Cir + Ceh", short: "Spawns wolves that deal damage and Chill enemies",
+      ritual: { name: "Cir", type: "Ritual Rune", icon: "🐺",
+        bullets: ["Spawns spectral wolves around you", "Wolves deal damage and apply Chill to enemies"] },
+      invocation: { name: "Ceh", type: "Invocation Rune", icon: "🛡️",
+        bullets: ["Empowers the Cir Ritual effect", "Scales the wolves' damage and Chill from Cir"] } },
+  ];
+
+  const RUNE_ALTS = [
+    { name: "Gar", icon: "💥", bullets: ["More Critical Strike Chance", "Doesn't work well with Splinter of Hellfire (removes crit)"] },
+    { name: "Que", icon: "🪨", bullets: ["Earthen Bulwark", "Helps with defense and survivability"] },
+    { name: "Igni", icon: "🔥", bullets: ["Good way to generate Offering", "Useful for Invocation-heavy setups"] },
+    { name: "Tam", icon: "❄️", bullets: ["Useful if you spam your Core Skill often", "Scales with frequent casts of Ice Shards"] },
+    { name: "Jah", icon: "🌪️", bullets: ["Lets you move faster with Teleport", "Great for speed-clearing and repositioning"] },
+  ];
+
+  function runeToTooltip(rune, pair) {
+    return {
+      icon: rune.icon,
+      name: rune.name,
+      rarity: rune.type || "Rune",
+      bullets: rune.bullets,
+      footerIcon: "🔗",
+      footerLabel: pair ? "Runeword" : null,
+      footerValue: pair ? pair.name : null,
+    };
+  }
+
+  function slotCard(item) {
+    const btn = document.createElement('button');
+    btn.className = 'gear-slot' + (item.rarity === 'unique' ? ' rarity-unique' : '');
+    btn.innerHTML = `
+      <div class="icon-box">${item.icon}</div>
+      <div class="txt">
+        <div class="slot-label">${item.slot}</div>
+        <div class="item-name">${item.name}</div>
+      </div>`;
+    btn.addEventListener('click', () => openTooltip(gearToTooltip(item)));
+    return btn;
+  }
+
+  const gearColLeft = document.getElementById('gear-col-left');
+  const gearColRight = document.getElementById('gear-col-right');
+  if (gearColLeft && gearColRight) {
+    GEAR_LEFT.forEach(item => gearColLeft.appendChild(slotCard(item)));
+    GEAR_RIGHT.forEach(item => gearColRight.appendChild(slotCard(item)));
+  }
+
+  function chip(entry, onClick) {
+    const el = document.createElement(onClick ? 'button' : 'div');
+    el.className = 'chip';
+    el.innerHTML = `<div class="icon-box">${entry.icon}</div><span class="lbl">${entry.name}</span>`;
+    if (onClick) {
+      el.addEventListener('click', onClick);
+    } else {
+      el.title = entry.note;
+    }
+    return el;
+  }
+
+  const splinterStrip = document.getElementById('splinter-strip');
+  if (splinterStrip) {
+    SPLINTERS_EQUIPPED.forEach(id => {
+      const s = SPLINTERS_FULL.find(x => x.id === id);
+      if (s) splinterStrip.appendChild(chip({ icon: s.icon, name: s.name.replace('Splinter of ', '').replace('the ', '') }, () => openTooltip(splinterToTooltip(s))));
+    });
+  }
+
+  // Runewords in the Gear tab (icon strip, clickable)
+  const runeStrip = document.getElementById('rune-strip');
+  if (runeStrip) {
+    RUNE_PAIRS.forEach(pair => {
+      runeStrip.appendChild(chip({ icon: pair.ritual.icon, name: pair.ritual.name }, () => openTooltip(runeToTooltip(pair.ritual, pair))));
+      runeStrip.appendChild(chip({ icon: pair.invocation.icon, name: pair.invocation.name }, () => openTooltip(runeToTooltip(pair.invocation, pair))));
+    });
+  }
+
+  // Runewords in the Runes tab (full cards + alternates strip)
+  const runePairsBis = document.getElementById('rune-pairs-bis');
+  if (runePairsBis) {
+    RUNE_PAIRS.forEach(pair => {
+      const btn = document.createElement('button');
+      btn.className = 'rune-pair-card';
+      btn.innerHTML = `
+        <div class="icons">
+          <div class="icon-box">${pair.icon1}</div>
+          <div class="icon-box">${pair.icon2}</div>
+        </div>
+        <div class="info">
+          <div class="name">${pair.name}</div>
+          <div class="desc">${pair.short}</div>
+        </div>
+        <span class="chev">›</span>`;
+      btn.addEventListener('click', () => openTooltip(runeToTooltip(pair.ritual, pair)));
+      runePairsBis.appendChild(btn);
+    });
+  }
+
+  const runeAltsStrip = document.getElementById('rune-alts-strip');
+  if (runeAltsStrip) {
+    RUNE_ALTS.forEach(rune => {
+      runeAltsStrip.appendChild(chip(rune, () => openTooltip(runeToTooltip(rune, null))));
+    });
+  }
+
+  // Gearset tabs (Starter doll vs 1-70 generic priorities)
+  const gearsetTabs = document.querySelectorAll('.gearset-tab');
+  const gearViewStarter = document.getElementById('gear-view-starter');
+  const gearViewLeveling = document.getElementById('gear-view-leveling');
+  gearsetTabs.forEach(btn => {
+    btn.addEventListener('click', () => {
+      gearsetTabs.forEach(b => b.classList.toggle('active', b === btn));
+      const isStarter = btn.dataset.set === 'starter';
+      gearViewStarter.style.display = isStarter ? '' : 'none';
+      gearViewLeveling.style.display = isStarter ? 'none' : '';
+    });
+  });
+
+  // --- Service worker ---
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('sw.js').catch(() => {});
+    });
+  }
+
+  // --- Install prompt ---
+  let deferredPrompt = null;
+  const banner = document.getElementById('install-banner');
+  const installBtn = document.getElementById('install-btn');
+  const dismissBtn = document.getElementById('install-dismiss');
+
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    try {
+      if (!localStorage.getItem('is-guide-install-dismissed')) {
+        banner.classList.add('show');
+      }
+    } catch (err) {
+      banner.classList.add('show');
+    }
+  });
+
+  installBtn?.addEventListener('click', async () => {
+    banner.classList.remove('show');
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      await deferredPrompt.userChoice;
+      deferredPrompt = null;
+    }
+  });
+
+  dismissBtn?.addEventListener('click', () => {
+    banner.classList.remove('show');
+    try { localStorage.setItem('is-guide-install-dismissed', '1'); } catch (e) {}
+  });
+
+  window.addEventListener('appinstalled', () => {
+    banner.classList.remove('show');
+  });
+</script>
+
+</body>
+</html>
