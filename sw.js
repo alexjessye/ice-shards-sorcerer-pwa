@@ -1,4 +1,4 @@
-const CACHE_NAME = "ice-shards-guide-v2";
+const CACHE_NAME = "ice-shards-guide-v3";
 const ASSETS = [
   "./",
   "./index.html",
@@ -30,18 +30,20 @@ self.addEventListener("activate", (event) => {
 });
 
 self.addEventListener("fetch", (event) => {
+  if (event.request.method !== "GET") return;
+
+  // Network-first: always try to get the latest version when online,
+  // only fall back to the cache when offline (so content updates show up
+  // immediately instead of being stuck behind a stale cached index.html).
   event.respondWith(
-    caches.match(event.request).then((cached) => {
-      if (cached) return cached;
-      return fetch(event.request)
-        .then((response) => {
-          if (response.ok && event.request.method === "GET") {
-            const clone = response.clone();
-            caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
-          }
-          return response;
-        })
-        .catch(() => cached);
-    })
+    fetch(event.request)
+      .then((response) => {
+        if (response.ok) {
+          const clone = response.clone();
+          caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
+        }
+        return response;
+      })
+      .catch(() => caches.match(event.request))
   );
 });
